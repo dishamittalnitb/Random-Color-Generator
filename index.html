@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Color Generator</title>
+    <link rel="stylesheet" href="style.css">         
+</head>
+
+<body>
+    <div class="bigcont">
+        <h1>Welcome to Random Box Color Generator!</h1>
+        <p>Hi! This websites generates random background colors for the boxes given below. Try and find out!</p>
+        <img src="download (2).jpg" alt="black and white cat image" style="width:300px" class="center">
+        <button class = "button-generate" id="generate">Generate</button>
+        <div class="container">
+            <button class="box" id="box1">1</button>
+            <button class="box" id="box2">2</button>
+            <button class="box" id="box3">3</button>
+            <button class="box" id="box4">4</button>
+            <button class="box" id="box5">5</button>
+        </div>
+
+    </div>
+    <script>
+        
+        document.getElementById("generate").addEventListener("click", colorGenerator);
+
+        function getRandomHexColor() {
+            return "#" + Math.floor(Math.random() * 16777215).toString(16).padStart(6, "0");
+        }
+
+        function colorGenerator() {
+            document.body.style.backgroundColor = "black";
+            let boxes = document.querySelectorAll(".box");
+            boxes.forEach(box => {
+                let randomColor = getRandomHexColor();
+                box.style.backgroundColor = randomColor;
+            });
+        }
+
+        
+
+        // Add click event to ALL boxes (do this once)
+        document.querySelectorAll(".box").forEach(box => {
+            box.addEventListener("click", function() {
+                changeBGcolor(this); // Correctly passing the clicked box
+            });
+        });
+
+        function changeBGcolor(element) {
+            document.body.style.backgroundColor = element.style.backgroundColor;
+            
+        }
+    </script>
+</body>
+
+</html>
